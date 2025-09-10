@@ -1,17 +1,21 @@
+import 'package:management_books_system_web/Enums/category_enum.dart';
+
 class Book {
   final int id;
   final int publisherId;
   final String name;
   final int pages;
-  final String category;
+  final Categorys category;
+  bool isFavorite;
+  final int authorId;
 
-  const Book(
-    {
-      required this.id,
-      required this.name,
-      required this.category,
-      required this.pages,
-      required this.publisherId
-    }
-  );
+  Book({
+    required this.id,
+    required this.name,
+    required this.category,
+    required this.pages,
+    required this.publisherId,
+    this.isFavorite = false, 
+    required this.authorId
+  });
 }

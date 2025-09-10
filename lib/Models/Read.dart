@@ -3,18 +3,15 @@ class Read {
   final int userId;
   final int bookId;
   final DateTime dateStart;
-  final bool isFinished;
-  final bool isLiked;
+  bool isFinished;
+  bool isLiked;
 
-  const Read(
-    {
-      required this.id,
-      required this.bookId,
-      required this.userId,
-      required this.dateStart,
-      required this.isFinished,
-      required this.isLiked
-    }
-  );
-
+  Read({
+    required this.id,
+    required this.bookId,
+    required this.userId,
+    required this.dateStart,
+    this.isFinished = false,
+    this.isLiked = false,
+  });
 }

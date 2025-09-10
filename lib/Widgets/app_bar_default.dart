@@ -56,3 +56,50 @@ class _AppBarDefault extends State<AppBarDefault> {
     );
   }
 }
+
+class DrawerDefault extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      backgroundColor: getColor(),
+      child: ListView(
+        children: [
+          ListTile(
+            leading: Icon(Icons.local_library,color: Colors.white,),
+            title: Text(
+              "Minha Biblioteca",
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.white,
+              )),
+            onTap: ()=>Get.toNamed("/my_library"),
+          ),
+          ListTile(
+            leading: Icon(Icons.add, color: Colors.white),
+            title: Text(
+              "Adicionar Livro",
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.white,
+              )),
+            onTap: ()=>Get.toNamed("/add_book"),
+          ),
+          ListTile(
+            leading: Icon(Icons.book, color: Colors.white,),
+            title: Text(
+              "Minhas Leituras",
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.white
+              ),
+            ),
+            onTap: ()=>Get.toNamed("/my_reads"),
+          )
+        ],
+      ),
+    );
+  }
+}

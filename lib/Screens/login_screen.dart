@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:management_books_system_web/Controllers/user_controller.dart';
 import 'package:management_books_system_web/Styles/color.dart';
 import 'package:management_books_system_web/Validations/formatters.dart';
 import 'package:management_books_system_web/Widgets/button.dart';
@@ -9,6 +10,7 @@ class LoginScreen extends StatelessWidget{
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final _key = GlobalKey<FormState>();
+  final controller = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +62,24 @@ class LoginScreen extends StatelessWidget{
                 SizedBox(
                   height: 50,
                   width: 200,
-                  child: Button(title: "Entrar", onPressed: (){}),
+                  child: Button(
+                    title: "Entrar", 
+                    onPressed: (){
+                      controller.login(usernameController.text, passwordController.text);
+                      if(_key.currentState!.validate()){
+                        if(controller.isLogged.value == true){
+                          Get.toNamed("/home");
+                        }else{
+                          Get.snackbar(
+                            "As credenciais são inválidas.", 
+                            "As credenciais são inválidas.",
+                            backgroundColor: Colors.red,
+                            colorText: Colors.white,
+                            snackPosition: SnackPosition.BOTTOM,
+                          );
+                      }
+                      }
+                    }),
                 ),
                 SizedBox(height: 16,),
                 Link(title: "Não possui conta? Cadastre-se", 

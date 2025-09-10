@@ -49,7 +49,7 @@ class DropdownTextField extends StatefulWidget{
   final String label;
   final String placeholder;
   final ValueChanged<String>? onChanged;
-  final String Function(String?) validator;
+  final String? Function(String?) validator;
   final String value;
 
   const DropdownTextField(
