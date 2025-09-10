@@ -7,6 +7,7 @@ import 'package:management_books_system_web/Models/user.dart';
 class UserController extends GetxController{
   final users = <User>[].obs;
   var isLogged = false.obs;
+  User? user;
 
   void fromJson(List<Map<String, dynamic>> json){
     json.map((e){
@@ -31,11 +32,13 @@ class UserController extends GetxController{
     for (var element in users) {
       if(element.mail == mail && element.password == encrypt(password)){
         isLogged.value = true;
+        user = element;
       }
     }
   }
 
   void logout(){
     isLogged.value = false;
+    user = null;
   }
 }

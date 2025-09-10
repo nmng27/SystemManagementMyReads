@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:management_books_system_web/Screens/books_screen.dart';
 import 'package:management_books_system_web/Screens/login_screen.dart';
 import 'package:management_books_system_web/Screens/register_screen.dart';
 
@@ -14,7 +15,9 @@ class Pages extends StatelessWidget{
       initialRoute: "/login",
       getPages: [
         GetPage(name: "/login", page: ()=>LoginScreen()),
-        GetPage(name: "/register", page: ()=>RegisterScreen())
+        GetPage(name: "/register", page: ()=>RegisterScreen()),
+        GetPage(name: "/books", page: ()=>BooksScreen()),
+        
       ],
     );
   }

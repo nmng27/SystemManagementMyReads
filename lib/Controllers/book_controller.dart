@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:management_books_system_web/Controllers/author_controller.dart';
 import 'package:management_books_system_web/Enums/category_enum.dart';
 import 'package:management_books_system_web/Models/book.dart';
 
@@ -6,18 +7,18 @@ class BookController extends GetxController {
   // Listas reativas
   final books = <Book>[].obs;
   final booksFilter = <Book>[].obs;
+  final auxController = Get.put(AuthorController());
 
   // Preencher a lista a partir de JSON
   void fromJson(List<Map<String, dynamic>> json) {
     json.forEach((e) {
       var newBook = Book(
-        id: e["id"],
-        name: e["name"],
-        category: getCategory(e["category"])!,
-        pages: e["pages"],
-        publisherId: e["publisherId"],
-        isFavorite: bool.parse(e["isFavorite"]),
-      );
+        id: e["id"], 
+        name: e["name"], 
+        category: getCategory(e["category"])!, 
+        pages: e["pages"], 
+        publisherId: e["publisherId"], 
+        authorId: e["authorId"]);
       books.add(newBook);
       booksFilter.add(newBook);
     });
@@ -46,11 +47,13 @@ class BookController extends GetxController {
   }
 
   // Filtrar livros
-  void onFilter(String? name, Categorys? category) {
+  void onFilter(String? name, Categorys? category, String? author) {
+    int? authorId = auxController.getAuthor(author!);
     final resultado = books.where((e) {
       final matchName = name == null || name.isEmpty || e.name.toLowerCase().contains(name.toLowerCase());
       final matchCategory = category == null  || e.category == category;
-      return matchName && matchCategory;
+      final matchAuthor = author == null || author == e.authorId;
+      return matchName && matchCategory && matchAuthor;
     }).toList();
 
     booksFilter.assignAll(resultado);
